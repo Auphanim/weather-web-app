@@ -1,0 +1,53 @@
+h1 {
+    color: indigo;
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+img {
+    width: 25%;
+    height: 25%
+}
+
+p {
+    color: indigo;
+}
+
+body {
+    background-color: #B4FF7D;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+header a {
+    color: darkblue;
+    margin-right: 16px;
+}
+
+footer {
+    color: slateblue;
+    border-top: 1px solid slateblue;
+    margin-top: 16px;
+    padding: 16px 0;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
+
+.portrait {
+    width: 25%;
+    height: 25%;
+}
+
