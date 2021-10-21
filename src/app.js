@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 const app = express()
 
@@ -16,8 +18,6 @@ app.use(express.static(publicDirectoryPath))
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
-
-
 
 
 app.get('', (req, res) => {
@@ -50,13 +50,33 @@ app.get('/weather', (req, res) => {
             error: 'You must provide an address'
         })
     }
+    const address = req.query.address
+    console.log(address)
+    // console.log(req.query.address)
+    // res.send([{
+    //     forecast: "it is raining",
+    //     location: 'Florida',
+    //     address: req.query.address
+    // }])
+    geocode(address, (error, { latitude, longitude, location} = {}) => {
+        if (error) {
+            return res.send({
+                error
+            })
+        }
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return res.send({
+                    error
+                })
+            } 
+            res.send([{
+                location,
+                forecast: forecastData
+            }])
+          })  
+    })
 
-    console.log(req.query.address)
-    res.send([{
-        forecast: "it is raining",
-        location: 'Florida',
-        address: req.query.address
-    }])
 }) 
 
 app.get('/help/*', (req, res) => {
