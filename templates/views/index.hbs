@@ -3,16 +3,27 @@
 
 <head>
     <link rel="stylesheet" href="/css/styles.css">
+
 </head>
 
 <body>
     <div class="main-content">
         {{>header}}
 
-        <p> lmao bottom text</p>
+        <p>Use this site to get a weather forecast!</p>
+    
+        <form>
+            <input placeholder='location'>
+            <button>Search</button>
+        </form>
+        <!-- ID message-1 p is used for errors if any are logged and the location in the results -->
+        <p id='message-1'></p>
+        <!-- ID message-2 p is used for forecast data -->
+        <p id='message-2'></p>
     </div>
     
     {{>footer}}
+    <script src='/js/app.js'></script>
 </body>
 
 </html>
